@@ -22,3 +22,27 @@ cartIcon.addEventListener("click", function () {
 cartCloseBtn.addEventListener("click", function () {
   openClose(cartCard, "active-cart");
 });
+// Slider
+const slides = document.querySelectorAll(".slide");
+const slider = document.querySelector(".slider");
+const btnLeft = document.querySelector(".slider-btn--left");
+const btnRight = document.querySelector(".slider-btn--right");
+let currentSlide = 0;
+slides.forEach((slide, index) => {
+  slide.style.transform = `translateX(${100 * index}%)`;
+});
+
+btnRight.addEventListener("click", function () {
+  currentSlide++;
+  console.log(currentSlide);
+  slides.forEach((slide, index) => {
+    slide.style.transform = `translateX(${100 * (index - currentSlide)}%)`;
+  });
+});
+btnLeft.addEventListener("click", function () {
+  currentSlide--;
+  console.log(currentSlide);
+  slides.forEach((slide, index) => {
+    slide.style.transform = `translateX(${100 * (index - currentSlide)}%)`;
+  });
+});

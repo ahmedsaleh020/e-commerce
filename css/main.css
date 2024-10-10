@@ -357,7 +357,7 @@ nav .container .btns span:hover i {
   }
 }
 /* Hero Section Styles */
-.hero-section {
+.hero-section  {
   margin-top: 160px;
 }
 @media (max-width: 760px) {
@@ -365,7 +365,8 @@ nav .container .btns span:hover i {
     margin-top: 220px;
   }
 }
-.swiper {
+/* swiper styles */
+/* .swiper {
   width: 100%;
 }
 .swiper img {
@@ -380,8 +381,81 @@ nav .container .btns span:hover i {
   width: 30px;
   height: 10px;
   border-radius: 20px;
-}
+} */
+/* slider styles */
 
+.slider {
+width: 100%;
+overflow: hidden;
+position: relative;
+display: flex;
+}
+.slider .slide {
+  width: 100%;
+  flex-shrink: 0;
+  transition: all 0.3s;
+}
+.slider .slide img {
+  width: 100%;
+
+ 
+}
+.slider button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 35px;
+  height: 35px;
+  background-color: #ffffff29;
+  color: var(--main-color);
+  font-size: 25px;
+  cursor: pointer;
+  border: 0.5px solid var(--border-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  transition: all 0.3s;
+}
+@media (max-width: 760px) {
+  .slider button {
+    width: 25px;
+    height: 25px;
+    font-size: 20px;
+  }
+}
+.slider button:hover {
+  background-color: var(--main-color);
+  color: var(--highlight-color);
+}
+.slider .slider-btn--left {
+  left: 5px;
+}
+.slider .slider-btn--right {
+  right: 5px;
+}
+.dots {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  column-gap: 15px;
+}
+.dot {
+  width: 15px;
+  height: 15px;
+  border: 0.5px solid var(--border-color);
+  border-radius: 50%;
+  background-color: #ffffff59;
+  cursor: pointer;
+}
+.dot.active {
+  background-color: var(--main-color);
+  width: 35px;
+  height: 15px;
+  border-radius: 30px;
+}
 /* features styles */
 .features .container {
   background-color: var(--highlight-color);
@@ -398,27 +472,24 @@ nav .container .btns span:hover i {
   justify-content: center;
   align-items: center;
   column-gap: 15px;
-
 }
-.feature-img{
+.feature-img {
   width: 40px;
 }
-.feature-text h4{
+.feature-text h4 {
   font-size: 15px;
 }
-.feature-text p{
+.feature-text p {
   font-size: 15px;
   width: 200px;
 }
-@media (max-width:760px){
-.features .container {
-  justify-content: center;
-  row-gap: 20px;
-}
-.feature {
-  justify-content: space-around;
-  width: 100%;
-
-}
-  
+@media (max-width: 760px) {
+  .features .container {
+    justify-content: center;
+    row-gap: 20px;
+  }
+  .feature {
+    justify-content: space-around;
+    width: 100%;
+  }
 }
