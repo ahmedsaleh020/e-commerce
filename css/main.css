@@ -191,7 +191,7 @@ nav .links img {
   bottom: -10px;
   left: 0;
 }
-.links li:active ::after,
+.links li.active ::after,
 .links li:hover ::after {
   width: 100%;
 }
@@ -496,5 +496,39 @@ nav .container .btns span:hover i {
   .feature {
     justify-content: space-around;
     width: 100%;
+  }
+}
+/* About us page styles */
+.about-page-nav .container{
+justify-content: center;
+}
+.about-section{
+  margin-top: 160px;
+  padding: 20px 0;
+
+}
+.about-section .container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  row-gap: 20px;
+}
+.about-section h1{
+  color: var(--parg-color);
+
+}
+.about-section p{
+text-align: left;
+width: 100%;
+color: var(--dark-color);
+font-size: 20px;
+}
+@media (max-width: 760px) {
+  .about-section {
+    margin-top: 220px;
+  }
+  .about-section p{
+    text-align: justify;
   }
 }
