@@ -28,3 +28,15 @@ function cartCardMAnager() {
   });
 }
 cartCardMAnager();
+// back to top
+function toTop() {
+  const toTopBtn = document.querySelector(".back-to-top");
+  toTopBtn.addEventListener("click", function () {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: "smooth",
+    });
+  });
+}
+toTop();
