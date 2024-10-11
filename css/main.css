@@ -201,6 +201,7 @@ nav .btns {
 }
 nav .menu-icon {
   display: none;
+  cursor: pointer;
 }
 nav .btns span {
   background-color: var(--main-color);
