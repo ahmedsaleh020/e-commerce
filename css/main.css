@@ -20,6 +20,7 @@ body {
   --border-color: #c0c0c0; /* Light Gray */
   --name-item: #b5743e; /* Dark Orange */
 }
+/* custom styles */
 .container {
   width: 70%;
   padding: 25px 0px;
@@ -28,6 +29,22 @@ body {
 @media (max-width: 1500px) {
   .container {
     width: 90%;
+  }
+}
+.page-heading {
+  color: var(--parg-color);
+  text-align: center;
+}
+.page-nav .container {
+  justify-content: center;
+}
+.page-section {
+  margin-top: 160px;
+  padding: 20px 0;
+}
+@media (max-width: 760px) {
+  .page-section {
+    margin-top: 220px;
   }
 }
 /* .top-nav Styles */
@@ -499,36 +516,61 @@ nav .container .btns span:hover i {
   }
 }
 /* About us page styles */
-.about-page-nav .container{
-justify-content: center;
-}
-.about-section{
-  margin-top: 160px;
-  padding: 20px 0;
-
-}
-.about-section .container{
+.about-section .container {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   row-gap: 20px;
 }
-.about-section h1{
-  color: var(--parg-color);
 
-}
-.about-section p{
-text-align: left;
-width: 100%;
-color: var(--dark-color);
-font-size: 20px;
+.about-section p {
+  text-align: left;
+  width: 100%;
+  color: var(--dark-color);
+  font-size: 20px;
 }
 @media (max-width: 760px) {
-  .about-section {
-    margin-top: 220px;
-  }
-  .about-section p{
+  .about-section p {
     text-align: justify;
   }
+}
+/* contact us page styles */
+.contact-section form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  row-gap: 10px;
+}
+.contact-section form label {
+  color: var(--parg-color);
+  font-size: 18px;
+  font-weight: 600;
+}
+.contact-section form input,
+.contact-section form textarea {
+  padding: 10px 5px;
+  outline: none;
+  border: 1px solid var(--border-color);
+  border-radius: 5px;
+}
+.contact-section form input:focus,
+.contact-section form textarea:focus {
+  outline: none;
+  border: 1px solid var(--main-color);
+}
+.contact-section form textarea {
+  resize: vertical;
+  height: 200px;
+}
+.contact-section form .send-btn{
+  padding: 15px 5px;
+  cursor: pointer;
+  background-color: var(--main-color);
+  color: var(--highlight-color);
+  font-size: 18px;
+  transition: background 0.3s;
+}
+.contact-section form .send-btn:hover{
+  background-color: var(--parg-color);
 }
