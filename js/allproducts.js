@@ -1,4 +1,10 @@
-import { openClose } from "./common.js";
+import {
+  renderProducts,
+  toTop,
+  cartCardMAnager,
+  menuManager,
+} from "./common.js";
+//show and hide filter card
 function filterManager() {
   const filterCard = document.querySelector(".filter");
   const filterIcon = document.querySelector(".filter-icon");
@@ -11,3 +17,9 @@ function filterManager() {
   });
 }
 filterManager();
+// show and hide menu,cart card and the back to top btn functionality
+toTop();
+menuManager();
+cartCardMAnager();
+// render products in dom 
+const productsContainer = document.querySelector(".products-container");
