@@ -3,6 +3,7 @@ import {
   toTop,
   cartCardMAnager,
   menuManager,
+  renderProductsInCart
 } from "./common.js";
 //show and hide filter card
 function filterManager() {
@@ -21,5 +22,7 @@ filterManager();
 toTop();
 menuManager();
 cartCardMAnager();
+// render products of the cart
+renderProductsInCart();
 // render products in dom 
 const productsContainer = document.querySelector(".products-container");

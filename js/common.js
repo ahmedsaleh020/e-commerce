@@ -92,3 +92,40 @@ export function toTop() {
     });
   });
 }
+// render products in cart card
+export function renderProductsInCart() {
+  // variables
+  const cartCard = document.querySelector(".cart-items");
+  const cartCounter = document.querySelector(".cart-counter");
+  const cartTotal = document.querySelector(".cart-total");
+  let total = 0;
+  // get the array of cart products from the local storage
+  const cart = JSON.parse(localStorage.getItem("cart")) || [];
+  // clean the cart card
+  cartCard.innerHTML = "";
+  cart.forEach((element) => {
+    const { title, image, price } = element;
+    // calc the total
+    total += price;
+    const productCard = `
+    <div class="cart-item">
+    <img
+      class="item-img"
+      src="${image}"
+      alt="item-img"
+    />
+    <div class="item-detailes">
+      <h4 class="item-title">
+        ${title}
+      </h4>
+      <p class="item-price">${priceFormatter(price)}$</p>
+     </div>
+     <i class="fa-solid fa-trash-can item-remove"></i>
+     </div>`;
+    cartCard.insertAdjacentHTML("beforeend", productCard);
+  });
+  //update the cart total
+  cartCounter.textContent = cart.length;
+  // update the subtotal of the cart
+  cartTotal.textContent = `${priceFormatter(total)}$`;
+}
