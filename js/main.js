@@ -7,6 +7,7 @@ import {
   addToCart,
   openClose,
   priceFormatter,
+  removeFromCart,
 } from "./common.js";
 // show and hide menu,cart card and the back to top btn functionality
 toTop();
@@ -18,3 +19,5 @@ renderProductsInCart();
 const productsContainer = document.querySelector(".products-container");
 // add to cart
 addToCart();
+// remove from cart
+removeFromCart();

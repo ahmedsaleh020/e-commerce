@@ -25,14 +25,15 @@ export const renderProducts = function (container, productsArr) {
         price,
         category,
         rating: { rate, count },
+        id,
       } = element;
       // product card
       console.log(image, title, price, category, rate, count);
       const productCard = `
     <div class="product">
                 <div class="overlay">
-                  <span><i data-price="${price}" data-image="${image}"  data-title="${title}" class="fa-solid fa-cart-plus addToCart"></i></span>
-                  <span><i data-price="${price}" data-image="${image}"  data-title="${title}" class="fa-solid fa-heart addToWishList"></i></span>
+                  <span><i data-price="${price}" data-image="${image}"  data-title="${title}" data-id=${id} class="fa-solid fa-cart-plus addToCart"></i></span>
+                  <span><i data-price="${price}" data-image="${image}"  data-title="${title}" data-id=${id} class="fa-solid fa-heart addToWishList"></i></span>
                 </div>
                 <img
                   src="${image}"
@@ -105,7 +106,7 @@ export function renderProductsInCart() {
   // clean the cart card
   cartCard.innerHTML = "";
   cart.forEach((element) => {
-    const { prodTitle, prodImg, prodPrice } = element;
+    const { prodTitle, prodImg, prodPrice, prodId } = element;
     // calc the total
     total += Number(prodPrice);
     const productCard = `
@@ -121,7 +122,7 @@ export function renderProductsInCart() {
       </h4>
       <p class="item-price">${priceFormatter(prodPrice)}$</p>
      </div>
-     <i class="fa-solid fa-trash-can item-remove"></i>
+     <i class="fa-solid fa-trash-can item-remove" data-id=${prodId} data-title=${prodTitle}></i>
      </div>`;
     cartCard.insertAdjacentHTML("beforeend", productCard);
   });
@@ -133,7 +134,6 @@ export function renderProductsInCart() {
 // add to cart
 export function addToCart() {
   const productsContainer = document.querySelector(".products-container");
-
   productsContainer.addEventListener("click", function (e) {
     //add to cart functionality
     if (e.target.classList.contains("addToCart")) {
@@ -142,10 +142,28 @@ export function addToCart() {
       let prodPrice = e.target.dataset.price;
       let prodTitle = e.target.dataset.title;
       let prodImg = e.target.dataset.image;
-      console.log(prodPrice, prodTitle, prodImg);
+      let prodId = e.target.dataset.id;
       // update the cart array with the new product
-      cart.push({ prodImg, prodPrice, prodTitle });
-      console.log(cart);
+      cart.push({ prodImg, prodPrice, prodTitle, prodId });
+      // update local storage
+      localStorage.setItem("cart", JSON.stringify(cart));
+      // update dom
+      renderProductsInCart();
+    }
+  });
+}
+// remove from cart
+export function removeFromCart() {
+  const cartItemsContainer = document.querySelector(".cart-items");
+  cartItemsContainer.addEventListener("click", function (e) {
+    if (e.target.classList.contains("item-remove")) {
+      let cart = JSON.parse(localStorage.getItem("cart"));
+      let itemId = e.target.dataset.id;
+      // remove item from cart array
+      cart.splice(
+        cart.findIndex((item) => item.prodId == itemId),
+        1
+      );
       // update local storage
       localStorage.setItem("cart", JSON.stringify(cart));
       // update dom

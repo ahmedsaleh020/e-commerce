@@ -7,6 +7,7 @@ import {
   addToCart,
   openClose,
   priceFormatter,
+  removeFromCart,
 } from "./common.js";
 //show and hide filter card
 function filterManager() {
@@ -31,3 +32,5 @@ renderProductsInCart();
 const productsContainer = document.querySelector(".products-container");
 // add to cart
 addToCart();
+// remove from cart
+removeFromCart();
