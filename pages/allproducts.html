@@ -3,16 +3,20 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Contact Us | Topico Store</title>
-    <link rel="shortcut icon" href="../images/topico-icon.png" type="image/png">
     <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
-    integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
-    crossorigin="anonymous"
-    referrerpolicy="no-referrer"
-  />
+      rel="shortcut icon"
+      href="../images/topico-icon.png"
+      type="image/png"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+      integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
     <link rel="stylesheet" href="../css/main.css" />
+    <title>All Products | Topico Store</title>
   </head>
   <body>
     <header>
@@ -36,17 +40,32 @@
           </div>
         </div>
       </div>
-      <nav class="page-nav">
+      <nav>
         <div class="container">
           <ul class="links">
             <i class="fa-regular fa-circle-xmark close-menu"></i>
             <img class="menu-logo" src="../images/logo-black.png" alt="" />
             <li><a href="../index.html">Home</a></li>
-            <li><a href="./allproducts.html">All Products</a></li>
+            <li class="active"><a href="allproducts.html">All Products</a></li>
             <li><a href="./about.html">About</a></li>
-            <li class="active"><a href="contact.html">Contact</a></li>
+            <li><a href="./contact.html">Contact</a></li>
           </ul>
           <i class="fa-solid fa-bars menu-icon"></i>
+
+          <div class="btns">
+            <span>
+              <a href="">Login</a>
+              <i class="fa-solid fa-arrow-right-to-bracket"></i>
+            </span>
+            <span>
+              <a href="">Sign Up</a>
+              <i class="fa-solid fa-user-plus"></i>
+            </span>
+            <span class="my-account">
+              <a href="">My Account</a>
+              <i class="fa-solid fa-user my-account-icon"></i>
+            </span>
+          </div>
         </div>
       </nav>
     </header>
@@ -136,35 +155,123 @@
         <button>Proceed To Checkout</button>
       </div>
     </div>
-    <div class="contact-section page-section">
+    <span class="filter-icon show-filter-icon">
+      <i class="fa-solid fa-filter"></i>
+    </span>
+
+    <div class="products-section page-section">
+      <div class="container products-section-custom-container">
+        <div class="filter">
+          <i class="fa-regular fa-circle-xmark close-filter"></i>
+
+          <h2>Filter <i class="fa-solid fa-filter"></i></h2>
+          <div class="filter-category filter-type">
+            <h3>categories:</h3>
+            <form>
+              <div class="category category-men">
+                <label for="men">men clothes</label>
+                <input type="checkbox" id="men" />
+              </div>
+
+              <div class="category category-women">
+                <label for="women">Women clothes</label>
+                <input type="checkbox" id="women" />
+              </div>
+
+              <div class="category category-kids">
+                <label for="kids">kids clothes</label>
+                <input type="checkbox" id="kids" />
+              </div>
+            </form>
+          </div>
+          <div class="filter-price filter-type">
+            <h3>Price:</h3>
+            <form>
+              <div class="category high-price">
+                <label for="high">High Price</label>
+                <input type="checkbox" id="high" />
+              </div>
+              <div class="category hight-price">
+                <label for="low">Low Price</label>
+                <input type="checkbox" id="low" />
+              </div>
+            </form>
+          </div>
+
+          <div class="filter-rate filter-type">
+            <h3>Rating:</h3>
+            <form>
+              <div class="category hight-rate">
+                <label for="high-rate">High Rate</label>
+                <input type="checkbox" id="high-rate" />
+              </div>
+              <div class="category low-rate">
+                <label for="low-rate">Low Price</label>
+                <input type="checkbox" id="low-rate" />
+              </div>
+            </form>
+          </div>
+
+          <input
+            class="filter-btn show-more-btn"
+            type="submit"
+            value="Filter Products"
+          />
+        </div>
+        <div class="all-product">
+          <h2 class="heading">Our Products</h2>
+          <div class="products-container">
+            <div class="product">
+              <div class="overlay">
+                <span><i class="fa-solid fa-cart-plus"></i></span>
+                <span><i class="fa-solid fa-heart"></i></span>
+              </div>
+              <img
+                src="../images/product/product-1.jpg"
+                alt=""
+                class="product-img"
+              />
+              <p class="product-title">
+                Original Mobile Android Dual SIM Smart Phone G3
+              </p>
+              <div class="product-rating">
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+              </div>
+              <p class="product-price">150$</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="newsletter">
       <div class="container">
-        <h1 class="page-heading">Contact Us</h1>
-        <form>
-          <label for="name-field"> Name: </label>
-          <input
-            type="text"
-            name="name"
-            id="name-field"
-            placeholder="Enter Your Name"
-          />
-          <label for="email-field"> Email: </label>
-          <input
-            type="email"
-            name="email"
-            id="email-field"
-            placeholder="Enter Your Email"
-          />
-          <label for="message-field"> Message: </label>
-          <textarea
-            name="message"
-            id="message-field"
-            placeholder="Enter Your Message"
-          ></textarea>
-          <input class="send-btn" type="submit" value="Send Message" />
-        </form>
+        <div class="left-col">
+          <img src="../images/icon_email.png" alt="" />
+          <div class="newsletter-txt">
+            <h3>Sign up to newsletter</h3>
+            <p>Get email updates about our shop ... ands receive</p>
+            <h4>30$ Coupon for first shopping</h4>
+          </div>
+        </div>
+        <div class="right-col">
+          <form class="search g-form">
+            <input
+              type="email"
+              class="search-input g-input"
+              placeholder="Enter Your Email Here"
+            />
+            <input type="submit" value="Subscribe" class="search-btn g-input" />
+          </form>
+        </div>
       </div>
     </div>
     <div class="back-to-top">Back To Top</div>
+
     <footer>
       <div class="container">
         <div class="top-footer">
@@ -226,6 +333,6 @@
       </div>
     </footer>
     <script type="module" src="../js/main.js"></script>
-
+    <script type="module" src="../js/allproducts.js"></script>
   </body>
 </html>

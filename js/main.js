@@ -1,7 +1,5 @@
-// Global Functions
-const openClose = function (element, cls) {
-  element.classList.toggle(cls);
-};
+import { openClose } from "./common.js";
+
 // close and open menu
 function menuManager() {
   const menu = document.querySelector(".links");
