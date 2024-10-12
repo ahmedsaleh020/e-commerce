@@ -8,7 +8,7 @@ export const categoryCreator = function (category) {
   return `<span>${category}</span>`;
 };
 export const priceFormatter = function (price) {
-  return price.toFixed(2);
+  return Number(price).toFixed(2);
 };
 export const renderProducts = function (container, productsArr) {
   // handling the error in pages that doesn't have containers for products
@@ -27,11 +27,12 @@ export const renderProducts = function (container, productsArr) {
         rating: { rate, count },
       } = element;
       // product card
+      console.log(image, title, price, category, rate, count);
       const productCard = `
     <div class="product">
                 <div class="overlay">
-                  <span><i data-price="${price}" data-image="${image}"  data-title="${title}" class="fa-solid fa-cart-plus"></i></span>
-                  <span><i data-price="${price}" data-image="${image}"  data-title="${title}" class="fa-solid fa-heart"></i></span>
+                  <span><i data-price="${price}" data-image="${image}"  data-title="${title}" class="fa-solid fa-cart-plus addToCart"></i></span>
+                  <span><i data-price="${price}" data-image="${image}"  data-title="${title}" class="fa-solid fa-heart addToWishList"></i></span>
                 </div>
                 <img
                   src="${image}"
@@ -100,25 +101,25 @@ export function renderProductsInCart() {
   const cartTotal = document.querySelector(".cart-total");
   let total = 0;
   // get the array of cart products from the local storage
-  const cart = JSON.parse(localStorage.getItem("cart")) || [];
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
   // clean the cart card
   cartCard.innerHTML = "";
   cart.forEach((element) => {
-    const { title, image, price } = element;
+    const { prodTitle, prodImg, prodPrice } = element;
     // calc the total
-    total += price;
+    total += Number(prodPrice);
     const productCard = `
     <div class="cart-item">
     <img
       class="item-img"
-      src="${image}"
+      src="${prodImg}"
       alt="item-img"
     />
     <div class="item-detailes">
       <h4 class="item-title">
-        ${title}
+        ${prodTitle}
       </h4>
-      <p class="item-price">${priceFormatter(price)}$</p>
+      <p class="item-price">${priceFormatter(prodPrice)}$</p>
      </div>
      <i class="fa-solid fa-trash-can item-remove"></i>
      </div>`;
@@ -128,4 +129,27 @@ export function renderProductsInCart() {
   cartCounter.textContent = cart.length;
   // update the subtotal of the cart
   cartTotal.textContent = `${priceFormatter(total)}$`;
+}
+// add to cart
+export function addToCart() {
+  const productsContainer = document.querySelector(".products-container");
+
+  productsContainer.addEventListener("click", function (e) {
+    //add to cart functionality
+    if (e.target.classList.contains("addToCart")) {
+      let cart = JSON.parse(localStorage.getItem("cart")) || [];
+      console.log(cart);
+      let prodPrice = e.target.dataset.price;
+      let prodTitle = e.target.dataset.title;
+      let prodImg = e.target.dataset.image;
+      console.log(prodPrice, prodTitle, prodImg);
+      // update the cart array with the new product
+      cart.push({ prodImg, prodPrice, prodTitle });
+      console.log(cart);
+      // update local storage
+      localStorage.setItem("cart", JSON.stringify(cart));
+      // update dom
+      renderProductsInCart();
+    }
+  });
 }
