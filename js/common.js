@@ -28,7 +28,6 @@ export const renderProducts = function (container, productsArr) {
         id,
       } = element;
       // product card
-      console.log(image, title, price, category, rate, count);
       const productCard = `
     <div class="product">
                 <div class="overlay">
@@ -146,7 +145,8 @@ export function addToCart() {
       // update the cart array with the new product
       cart.push({ prodImg, prodPrice, prodTitle, prodId });
       // update local storage
-      localStorage.setItem("cart", JSON.stringify(cart));
+      updateLocalStorg("cart", cart);
+      // localStorage.setItem("cart", JSON.stringify(cart));
       // update dom
       renderProductsInCart();
     }
@@ -165,9 +165,14 @@ export function removeFromCart() {
         1
       );
       // update local storage
-      localStorage.setItem("cart", JSON.stringify(cart));
+      updateLocalStorg("cart", cart);
+      // localStorage.setItem("cart", JSON.stringify(cart));
       // update dom
       renderProductsInCart();
     }
   });
+}
+// function that update local storage
+function updateLocalStorg(key, value) {
+  localStorage.setItem(key, JSON.stringify(value));
 }
