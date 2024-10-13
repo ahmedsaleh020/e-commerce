@@ -203,12 +203,9 @@ export function toastCreator() {
   const toastContainer = document.querySelector(".toasts-container");
   if (toastContainer) {
     const toast = `
-      <div class="toast">
-          <i class="fa-solid fa-thumbs-up success-icon"></i>
-          <div class="toast-txt">
-            <h3>Success</h3>
-            <p>Product has added to your cart successfully</p>
-          </div>
+         <div class="toast">
+          <i class="fas fa-shopping-cart toast-icon"></i>
+          <p>Added To Cart !</p>
           <button class="view-cart">View Cart</button>
           <i class="fa-solid fa-xmark remove-toast"></i>
         </div>
@@ -237,7 +234,10 @@ export function removeToast() {
     toastsContainer.addEventListener("click", function (e) {
       if (e.target.classList.contains("remove-toast")) {
         e.target.parentElement.classList.remove("active-toast");
-        e.target.parentElement.remove();
+        // to be removed smooth
+        setTimeout(() => {
+          e.target.parentElement.remove();
+        }, 100);
       }
     });
   }

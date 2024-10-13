@@ -83,7 +83,7 @@ body {
   justify-content: space-evenly;
   align-items: center;
   column-gap: 4px;
-  width: 60%;
+  width: 30%;
   background-color: #ffffff;
   padding: 5px;
   border-radius: 5px;
@@ -100,21 +100,13 @@ body {
 .active-toast {
   transform: translateX(0);
 }
-.toast .success-icon {
+.toast .toast-icon {
   color: var(--main-color);
   font-size: 30px;
 }
-.toast-txt {
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  flex-direction: column;
-}
-.toast-txt h3 {
+.toast p {
   color: var(--parg-color);
-}
-.toast-txt p {
-  color: var(--main-color);
+  font-weight: 500;
 }
 @media (max-width: 760px) {
   .toast-txt p {
