@@ -617,6 +617,7 @@ nav .container .btns span:hover i {
   row-gap: 20px;
   margin-top: 20px;
   flex-wrap: wrap;
+  justify-content: center;
 }
 .products-section .show-more-btn {
   padding: 15px 10px;
@@ -677,9 +678,6 @@ nav .container .btns span:hover i {
   min-height: 300px;
 }
 @media (max-width: 760px) {
-  .products-section .products-container {
-    justify-content: center;
-  }
   .product {
     width: 100%;
   }
@@ -776,7 +774,25 @@ nav .container .btns span:hover i {
   background-color: var(--highlight-color);
   color: var(--main-color);
 }
-
+/* loader styles */
+.loader {
+  width: 50px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(farthest-side, var(--main-color) 94%, #0000)
+      top/8px 8px no-repeat,
+    conic-gradient(#0000 30%, var(--main-color));
+  -webkit-mask: radial-gradient(farthest-side, #0000 calc(100% - 8px), #000 0);
+  animation: l13 1s infinite linear;
+}
+@keyframes l13 {
+  100% {
+    transform: rotate(1turn);
+  }
+}
+.hide-loader {
+  display: none;
+}
 /* Newsletter styles */
 .newsletter {
   background-color: var(--highlight-color);
