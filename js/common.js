@@ -133,24 +133,28 @@ export function renderProductsInCart() {
 // add to cart
 export function addToCart() {
   const productsContainer = document.querySelector(".products-container");
-  productsContainer.addEventListener("click", function (e) {
-    //add to cart functionality
-    if (e.target.classList.contains("addToCart")) {
-      let cart = JSON.parse(localStorage.getItem("cart")) || [];
-      console.log(cart);
-      let prodPrice = e.target.dataset.price;
-      let prodTitle = e.target.dataset.title;
-      let prodImg = e.target.dataset.image;
-      let prodId = e.target.dataset.id;
-      // update the cart array with the new product
-      cart.push({ prodImg, prodPrice, prodTitle, prodId });
-      // update local storage
-      updateLocalStorg("cart", cart);
-      // localStorage.setItem("cart", JSON.stringify(cart));
-      // update dom
-      renderProductsInCart();
-    }
-  });
+  if (productsContainer) {
+    productsContainer.addEventListener("click", function (e) {
+      //add to cart functionality
+      if (e.target.classList.contains("addToCart")) {
+        let cart = JSON.parse(localStorage.getItem("cart")) || [];
+        console.log(cart);
+        let prodPrice = e.target.dataset.price;
+        let prodTitle = e.target.dataset.title;
+        let prodImg = e.target.dataset.image;
+        let prodId = e.target.dataset.id;
+        // update the cart array with the new product
+        cart.push({ prodImg, prodPrice, prodTitle, prodId });
+        // update local storage
+        updateLocalStorg("cart", cart);
+        // localStorage.setItem("cart", JSON.stringify(cart));
+        // add toast
+        toastCreator();
+        // update dom
+        renderProductsInCart();
+      }
+    });
+  }
 }
 // remove from cart
 export function removeFromCart() {
@@ -192,5 +196,70 @@ export async function getProducts() {
     return data;
   } catch (error) {
     console.error(error);
+  }
+}
+// create toast
+export function toastCreator() {
+  const toastContainer = document.querySelector(".toasts-container");
+  if (toastContainer) {
+    const toast = `
+      <div class="toast">
+          <i class="fa-solid fa-thumbs-up success-icon"></i>
+          <div class="toast-txt">
+            <h3>Success</h3>
+            <p>Product has added to your cart successfully</p>
+          </div>
+          <button class="view-cart">View Cart</button>
+          <i class="fa-solid fa-xmark remove-toast"></i>
+        </div>
+    
+    `;
+    toastContainer.insertAdjacentHTML("afterbegin", toast);
+    // to let the toast slide in smooth
+    setTimeout(() => {
+      document.querySelector(".toast").classList.add("active-toast");
+    }, 20);
+    // store the new Toast in variable to easily removing it
+    let newToast = toastContainer.querySelector(".toast");
+    //     // to remove the toast by user
+    removeToast();
+
+    // remove the toast after 2 sec
+    removeAfterDelay(newToast);
+  } else {
+    console.log("toasts are unavailable in this page");
+  }
+}
+// remove toast
+export function removeToast() {
+  const toastsContainer = document.querySelector(".toasts-container");
+  if (toastsContainer) {
+    toastsContainer.addEventListener("click", function (e) {
+      if (e.target.classList.contains("remove-toast")) {
+        e.target.parentElement.classList.remove("active-toast");
+        e.target.parentElement.remove();
+      }
+    });
+  }
+}
+// function that remove element passed from dom after 2 sec
+function removeAfterDelay(toastElement) {
+  setTimeout(() => {
+    toastElement.classList.remove("active-toast");
+    setTimeout(() => {
+      toastElement.remove();
+    }, 200);
+  }, 3000);
+}
+// view cart through toast btn
+export function viewCart() {
+  const toastsContainer = document.querySelector(".toasts-container");
+  if (toastsContainer) {
+    toastsContainer.addEventListener("click", function (e) {
+      if (e.target.classList.contains("view-cart")) {
+        const cartCard = document.querySelector(".cart-card");
+        openClose(cartCard, "active-cart");
+      }
+    });
   }
 }
