@@ -173,6 +173,24 @@ export function removeFromCart() {
   });
 }
 // function that update local storage
-function updateLocalStorg(key, value) {
+export function updateLocalStorg(key, value) {
   localStorage.setItem(key, JSON.stringify(value));
+}
+// get products from api
+export async function getProducts() {
+  const api = "https://api.jsonbin.io/v3/b/67067371acd3cb34a893f8a9?meta=false";
+  try {
+    const res = await fetch(api, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        "X-Access-Key":
+          "$2a$10$QstHdfpftj1UKZ5ngyGQEuUNdSqdxGIiIV2QNH05enyCLBoDk9H/q",
+      },
+    });
+    const data = await res.json();
+    return data;
+  } catch (error) {
+    console.error(error);
+  }
 }
