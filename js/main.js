@@ -28,14 +28,14 @@ if (products.length == 0) {
   getProducts().then((products) => {
     // remove loader
     loader.classList.add("hide-loader");
-    // render products in dom
-    renderProducts(productsContainer, products);
+    // render 8 products in home page dom
+    renderProducts(productsContainer, products.slice(0, 8));
     // save the products to local storage so next time render them from it instead of make new req
     updateLocalStorg("products", products);
   });
 } else {
-  // render products in dom
-  renderProducts(productsContainer, products);
+  // render 8 products in home page dom
+  renderProducts(productsContainer, products.slice(0, 8));
 }
 // add to cart
 addToCart();
