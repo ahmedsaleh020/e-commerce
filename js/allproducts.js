@@ -56,3 +56,70 @@ removeFromCart();
 removeToast();
 // view cart through toast
 viewCart();
+// filter functionality
+const filterBtn = document.querySelector(".filter-btn");
+filterBtn.addEventListener("click", function () {
+  const products = JSON.parse(localStorage.getItem("products"));
+  const selectedFilters = getSelectedFilters();
+  const filteredProducts = applyFilters(products, selectedFilters);
+  // render the filtered products in dom
+  renderProducts(productsContainer, filteredProducts);
+  // uncheck all the checkboxes
+  document
+    .querySelectorAll(".filter input[type='checkbox']")
+    .forEach((checkbox) => {
+      checkbox.checked = false;
+    });
+  // close the filter page to show the page of products
+  const filterCard = document.querySelector(".filter");
+  openClose(filterCard, "active-filter");
+});
+
+function getSelectedFilters() {
+  const selectedCategories = [];
+  document
+    .querySelectorAll('.filter-category input[type="checkbox"]:checked')
+    .forEach((checkbox) => {
+      selectedCategories.push(checkbox.id);
+    });
+
+  const priceFilter = document.querySelector(
+    '.filter-price input[type="checkbox"]:checked'
+  )?.id;
+  const ratingFilter = document.querySelector(
+    '.filter-rate input[type="checkbox"]:checked'
+  )?.id;
+
+  return {
+    categories: selectedCategories,
+    price: priceFilter,
+    rating: ratingFilter,
+  };
+}
+
+function applyFilters(products, filters) {
+  let filteredProducts = products;
+
+  // Filter by categories
+  if (filters.categories.length > 0) {
+    filteredProducts = filteredProducts.filter((product) =>
+      filters.categories.includes(product.category.toLowerCase())
+    );
+  }
+
+  // Filter by price
+  if (filters.price === "high-price") {
+    filteredProducts.sort((a, b) => b.price - a.price);
+  } else if (filters.price === "low-price") {
+    filteredProducts.sort((a, b) => a.price - b.price);
+  }
+
+  // Filter by rating
+  if (filters.rating === "high-rate") {
+    filteredProducts.sort((a, b) => b.rating.rate - a.rating.rate);
+  } else if (filters.rating === "low-rate") {
+    filteredProducts.sort((a, b) => a.rating.rate - b.rating.rate);
+  }
+
+  return filteredProducts;
+}

@@ -782,7 +782,7 @@ nav .container .btns span:hover i {
   background: radial-gradient(farthest-side, var(--main-color) 94%, #0000)
       top/8px 8px no-repeat,
     conic-gradient(#0000 30%, var(--main-color));
-  -webkit-mask: radial-gradient(farthest-side, #0000 calc(100% - 8px), #000 0);
+  --webkit-mask: radial-gradient(farthest-side, #0000 calc(100% - 8px), #000 0);
   animation: l13 1s infinite linear;
 }
 @keyframes l13 {
@@ -1069,7 +1069,7 @@ footer .top-footer .big-col .hotline p span {
     width: 100%;
     height: 100%;
     transform: translateX(-100%);
-    row-gap: 15px;
+    row-gap: 10px;
   }
   .active-filter {
     transform: translateX(0%);
@@ -1093,13 +1093,13 @@ footer .top-footer .big-col .hotline p span {
 .filter .filter-type {
   display: flex;
   flex-direction: column;
-  row-gap: 10px;
+  row-gap: 5px;
 }
 .filter form {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  row-gap: 5px;
+  row-gap: 3px;
 }
 .filter form .category {
   display: flex;
