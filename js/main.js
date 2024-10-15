@@ -1,6 +1,7 @@
 import {
   renderProducts,
   toTop,
+  scrollTo,
   cartCardMAnager,
   menuManager,
   renderProductsInCart,

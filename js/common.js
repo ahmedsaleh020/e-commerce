@@ -82,17 +82,6 @@ export function cartCardMAnager() {
     openClose(cartCard, "active-cart");
   });
 }
-// back to top
-export function toTop() {
-  const toTopBtn = document.querySelector(".back-to-top");
-  toTopBtn.addEventListener("click", function () {
-    window.scrollTo({
-      top: 0,
-      left: 0,
-      behavior: "smooth",
-    });
-  });
-}
 // render products in cart card
 export function renderProductsInCart() {
   // variables
@@ -254,12 +243,29 @@ function removeAfterDelay(toastElement) {
 // view cart through toast btn
 export function viewCart() {
   const toastsContainer = document.querySelector(".toasts-container");
+  const cartItemsContainer = document.querySelector(".cart-items");
   if (toastsContainer) {
     toastsContainer.addEventListener("click", function (e) {
       if (e.target.classList.contains("view-cart")) {
         const cartCard = document.querySelector(".cart-card");
         openClose(cartCard, "active-cart");
+        // scroll to bottom when the cart opened
+        scrollTo(cartItemsContainer, document.body.scrollHeight);
       }
     });
   }
+}
+export function scrollTo(element, position) {
+  element.scrollTo({
+    top: position,
+    left: 0,
+    behavior: "smooth",
+  });
+}
+// back to top
+export function toTop() {
+  const toTopBtn = document.querySelector(".back-to-top");
+  toTopBtn.addEventListener("click", function () {
+    scrollTo(window, 0);
+  });
 }
