@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Control Panel</title>
+    <link rel="stylesheet" href="../css/main.css" />
+  </head>
+  <body>
+    <div class="add-new-product">
+      <div class="container">
+        <h1>Add New Products</h1>
+
+        <form>
+          <label for="title">Product Title</label>
+          <input type="text" placeholder="Product Title ... " id="title" />
+          <label for="Description">Product Description</label>
+          <input
+            type="text"
+            placeholder="Product Description ... "
+            id="Description"
+          />
+          <label for="price">Product Price</label>
+          <input type="number" placeholder="Product Price ... " id="price" />
+          <label for="rate">Product Rate</label>
+          <input type="number" placeholder="Product Rate ... " id="rate" />
+          <label for="fileInput">Upload Product Image</label>
+          <input type="file" id="fileInput" />
+          <label for="category">Choose Category</label>
+
+          <select class="category" name="" id="category">
+            <option value="electronics">electronics</option>
+            <option value="women's clothing">women's clothing</option>
+            <option value="jewelery">jewelery</option>
+            <option value="men's clothing">men's clothing</option>
+          </select>
+
+          <input class="add-product-btn" type="submit" value="Add Product">
+        </form>
+      </div>
+    </div>
+    <script src="../js/control-panel.js"></script>
+  </body>
+</html>

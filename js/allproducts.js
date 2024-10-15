@@ -65,12 +65,10 @@ filterBtn.addEventListener("click", function () {
   // render the filtered products in dom
   renderProducts(productsContainer, filteredProducts);
   // uncheck all the checkboxes and radios
+  document.querySelectorAll(".filter input[type='radio']").forEach((radio) => {
+    radio.checked = false;
+  });
   document
-    .querySelectorAll(".filter input[type='radio']")
-    .forEach((radio) => {
-      radio.checked = false;
-    });
-    document
     .querySelectorAll(".filter input[type='checkbox']")
     .forEach((checkbox) => {
       checkbox.checked = false;
@@ -83,9 +81,9 @@ filterBtn.addEventListener("click", function () {
 function getSelectedFilters() {
   const selectedCategories = [];
   document
-    .querySelectorAll('.filter-category input[type="radio"]:checked')
-    .forEach((radio) => {
-      selectedCategories.push(radio.id);
+    .querySelectorAll('.filter-category input[type="checkbox"]:checked')
+    .forEach((checkbox) => {
+      selectedCategories.push(checkbox.id);
     });
 
   const priceFilter = document.querySelector(
