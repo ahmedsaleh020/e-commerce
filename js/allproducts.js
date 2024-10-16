@@ -34,20 +34,14 @@ renderProductsInCart();
 // get products from api only when there is no products stored in local storage from the previous request so not every time make new request
 const productsContainer = document.querySelector(".products-container");
 const loader = document.querySelector(".loader");
-let products = JSON.parse(localStorage.getItem("products")) || [];
-if (products.length == 0) {
-  getProducts().then((products) => {
-    // remove loader
-    loader.classList.add("hide-loader");
-    // render products in dom
-    renderProducts(productsContainer, products);
-    // save the products to local storage so next time render them from it instead of make new req
-    updateLocalStorg("products", products);
-  });
-} else {
+getProducts().then((products) => {
+  // remove loader
+  loader.classList.add("hide-loader");
   // render products in dom
   renderProducts(productsContainer, products);
-}
+  // save the products to local storage to use them in filtering to not make extra requests
+  updateLocalStorg("products", products);
+});
 // add to cart
 addToCart();
 // remove from cart

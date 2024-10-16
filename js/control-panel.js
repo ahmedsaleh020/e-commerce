@@ -3,23 +3,48 @@ const addBtn = document.querySelector("input[type='submit']");
 let products = JSON.parse(localStorage.getItem("products"));
 addBtn.addEventListener("click", function (e) {
   e.preventDefault();
-  const price = document.querySelector("#price").value;
-  const rate = document.querySelector("#rate").value;
-  const title = document.querySelector("#title").value;
-  const description = document.querySelector("#Description").value;
-  const category = document.querySelector("#category").value;
+  const price = document.querySelector("#price");
+  const rate = document.querySelector("#rate");
+  const title = document.querySelector("#title");
+  const description = document.querySelector("#Description");
+  const category = document.querySelector("#category");
   const file = document.querySelector("#fileInput");
-  if (rate <= 0 || rate > 5) {
-    alert("rate should be between 1-5 ");
+  if (
+    price.value == "" ||
+    price.value == 0 ||
+    rate.value == "" ||
+    title.value == "" ||
+    description.value == "" ||
+    file.value == ""
+  ) {
+    alert("Fill All Product Destails Please");
   } else {
-    uploadImage(file.files[0]).then((url) => {
-      // add new product to products array
-      products.push({
-        ...productData(price, rate, title, category, description, url),
+    if (rate.value <= 0 || rate.value > 5) {
+      alert("rate should be between 1-5 ");
+    } else {
+      uploadImage(file.files[0]).then((url) => {
+        // add new product to products array
+        products.push({
+          ...productData(
+            price.value,
+            rate.value,
+            title.value,
+            category.value,
+            description.value,
+            url
+          ),
+        });
+        // update the products remote json file AKA server
+        addProduct(products);
+        // reset fileds
+        price.value = "";
+        title.value = "";
+        rate.value = "";
+        description.value = "";
+        category.selectedIndex = 0;
+        file.value = "";
       });
-      // update the products remote json file AKA server
-      addProduct(products);
-    });
+    }
   }
 });
 
