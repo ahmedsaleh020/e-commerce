@@ -24,12 +24,16 @@ renderProductsInCart();
 // get products from api only when there is no products stored in local storage from the previous request so not every time make new request
 const productsContainer = document.querySelector(".products-container");
 const loader = document.querySelector(".loader");
-getProducts().then((products) => {
-  // remove loader
-  loader.classList.add("hide-loader");
-  // render 8 products in home page dom
-  renderProducts(productsContainer, products.slice(0, 8));
-});
+// this condition to not do req for products in non product based pages like about and contact pages etc
+if (productsContainer) {
+  getProducts().then((products) => {
+    // remove loader
+    loader.classList.add("hide-loader");
+    // render 8 products in home page dom
+    renderProducts(productsContainer, products.slice(0, 8));
+  });
+}
+
 // add to cart
 addToCart();
 // remove from cart

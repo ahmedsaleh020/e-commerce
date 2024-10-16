@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="shortcut icon"
+      href="../images/topico-icon.png"
+      type="image/png"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+      integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="../css/main.css" />
+    <title>Login | Topico Store</title>
+  </head>
+  <body>
+    <div class="toasts">
+      <div class="toasts-container container"></div>
+    </div>
+    <header>
+      <div class="top-nav">
+        <div class="container">
+          <a href="../index.html"
+            ><img src="../images/logo-black.png" alt="logo" class="logo"
+          /></a>
+          <form class="search">
+            <input
+              type="search"
+              class="search-input"
+              placeholder="Search For Products..."
+            />
+            <input type="submit" value="Search" class="search-btn" />
+          </form>
+          <div class="cart-container">
+            <i class="fa-solid fa-basket-shopping cart-icon">
+              <span class="cart-counter">0</span>
+            </i>
+          </div>
+        </div>
+      </div>
+      <nav>
+        <div class="container">
+          <ul class="links">
+            <i class="fa-regular fa-circle-xmark close-menu"></i>
+            <img class="menu-logo" src="../images/logo-black.png" alt="" />
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="./allproducts.html">All Products</a></li>
+            <li><a href="./about.html">About</a></li>
+            <li><a href="./contact.html">Contact</a></li>
+          </ul>
+          <i class="fa-solid fa-bars menu-icon"></i>
+
+          <div class="btns">
+            <span>
+              <a href="./signup.html">Sign Up</a>
+              <i class="fa-solid fa-user-plus"></i>
+            </span>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <div class="cart-card">
+      <div class="cart-header">
+        <h3>My Cart</h3>
+        <i class="fa-regular fa-circle-xmark close-cart"></i>
+      </div>
+      <div class="cart-items"></div>
+      <div class="cart-footer">
+        <div class="cart-footer-text">
+          <h3>Cart Subtotal</h3>
+          <p class="cart-total">0$</p>
+        </div>
+
+        <button>Proceed To Checkout</button>
+      </div>
+    </div>
+
+    <div class="login-section page-section">
+      <div class="container">
+        <div class="login-card">
+          <h2>Welcome Back</h2>
+          <form>
+            <input type="email" name="" id="email" placeholder="Email">
+            <input type="password"  id="password" placeholder="Password">
+            <a class="reset-password">Forget Password?</a>
+            <input type="submit" value="Login">
+            <p>Don't Have Account? <span><a href="./signup.html">Sign UP</a></span></p>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div class="back-to-top">Back To Top</div>
+
+    <footer>
+      <div class="container">
+        <div class="top-footer">
+          <div class="col big-col">
+            <a href="../index.html"
+              ><img src="../images/logo-white.png" alt="logo"
+            /></a>
+            <div class="hotline">
+              <i class="fa-solid fa-headset"></i>
+              <p class="txt">
+                Hotline Free 24/24: <br />
+                <span>(+100) 123 456 7890</span>
+              </p>
+            </div>
+          </div>
+          <div class="col">
+            <h3>FQA & Help</h3>
+            <div class="link">
+              <a href="#">FAQ's</a>
+              <a href="#">Ordering Tracking</a>
+              <a href="#">Contacts</a>
+              <a href="#">Events</a>
+              <a href="#">Help Center</a>
+            </div>
+          </div>
+          <div class="col">
+            <h3>Shipping & Delivery</h3>
+            <div class="link">
+              <a href="#">Delivery Information</a>
+              <a href="#">Discount</a>
+              <a href="#">Payment & Shipping</a>
+              <a href="#">Estimated Delivery Time</a>
+              <a href="#">Shipping Guide</a>
+            </div>
+          </div>
+          <div class="col">
+            <h3>Information</h3>
+            <div class="link">
+              <a href="#">Popular</a>
+              <a href="#">Our Services</a>
+              <a href="#">Your Account</a>
+              <a href="#">Privacy Policy</a>
+              <a href="#">Terms & Conditions</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="bottom-footer">
+        <p>
+          Copyright © <span><a href="../index.html">Topico</a></span> All rights
+          reserved
+        </p>
+        <div class="payment-logos">
+          <img src="../images/payment-1.png" alt="payment-logo" />
+          <img src="../images/payment-2.png" alt="payment-logo" />
+          <img src="../images/payment-3.png" alt="payment-logo" />
+          <img src="../images/payment-4.png" alt="payment-logo" />
+        </div>
+      </div>
+    </footer>
+    <script type="module" src="../js/main.js"></script>
+  </body>
+</html>

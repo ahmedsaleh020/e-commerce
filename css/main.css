@@ -1164,3 +1164,55 @@ footer .top-footer .big-col .hotline p span {
   color: var(--dark-color);
   transition: all 0.3s;
 }
+/* login styles */
+.login-card,
+.signup-card {
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  border-radius: 20px;
+  border: 1px solid var(--border-color);
+  text-align: center;
+  padding: 20px;
+}
+.login-card h2,
+.signup-card h2 {
+  margin-bottom: 10px;
+}
+.login-card form,
+.signup-card form {
+  display: flex;
+  flex-direction: column;
+  row-gap: 15px;
+}
+.login-card form input,
+.signup-card form input {
+  padding: 10px;
+  font-size: 18px;
+  border: 1px solid var(--border-color);
+  outline: none;
+  border-radius: 5px;
+}
+.login-card form input:focus,
+.signup-card form input:focus {
+  border-color: var(--main-color);
+}
+.login-card form a,
+.signup-card form a {
+  color: var(--main-color);
+  align-self: flex-start;
+}
+.login-card input[type="submit"],
+.signup-card input[type="submit"] {
+  cursor: pointer;
+  background-color: var(--main-color);
+  border-radius: 20px;
+  color: var(--parg-color);
+  padding: 20px 10px;
+  font-size: 20px;
+  border: 1px solid var(--main-color);
+  transition: all 0.3s;
+}
+.login-card input[type="submit"]:hover,
+.signup-card input[type="submit"]:hover {
+  background-color: var(--highlight-color);
+  color: var(--main-color);
+}
