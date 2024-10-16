@@ -1216,3 +1216,65 @@ footer .top-footer .big-col .hotline p span {
   background-color: var(--highlight-color);
   color: var(--main-color);
 }
+/* Account Styles */
+.account-section .container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  row-gap: 20px;
+}
+.account-image {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  border: 5px solid var(--main-color);
+}
+@media (max-width: 760px) {
+  .account-image {
+    width: 100px;
+    height: 100px;
+  }
+}
+.account-name,
+.account-email,
+.account-password {
+  font-size: 20px;
+}
+.account-password .edit-password,
+.account-password .show-password {
+  color: var(--main-color);
+  cursor: pointer;
+  margin-left: 5px;
+}
+.account-password .edit-password:hover,
+.account-password .show-password:hover {
+  color: var(--name-item);
+}
+.account-section form{
+display: flex;
+justify-content: center;
+align-items: center;
+}
+.account-section form input {
+  padding: 10px;
+  outline: none;
+  border: 1px solid var(--main-color);
+  font-size: 15px;
+}
+.account-section form input[type="submit"] {
+  background-color: var(--main-color);
+ cursor: pointer;
+}
+.hide-change-password{
+  visibility: hidden;
+}
+.control-panel-btn{
+  display: none;
+  background-color: var(--main-color);
+  color: var(--highlight-color);
+  font-size: 20px;
+  padding: 10px;
+  border: 1px solid var(--main-color);
+  border-radius: 10px;
+}

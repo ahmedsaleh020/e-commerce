@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="shortcut icon"
+      href="../images/topico-icon.png"
+      type="image/png"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+      integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="../css/main.css" />
+    <title>My Account | Topico Store</title>
+  </head>
+  <body>
+    <div class="toasts">
+      <div class="toasts-container container"></div>
+    </div>
+    <header>
+      <div class="top-nav">
+        <div class="container">
+          <a href="../index.html"
+            ><img src="../images/logo-black.png" alt="logo" class="logo"
+          /></a>
+          <form class="search">
+            <input
+              type="search"
+              class="search-input"
+              placeholder="Search For Products..."
+            />
+            <input type="submit" value="Search" class="search-btn" />
+          </form>
+          <div class="cart-container">
+            <i class="fa-solid fa-basket-shopping cart-icon">
+              <span class="cart-counter">0</span>
+            </i>
+          </div>
+        </div>
+      </div>
+      <nav>
+        <div class="container">
+          <ul class="links">
+            <i class="fa-regular fa-circle-xmark close-menu"></i>
+            <img class="menu-logo" src="../images/logo-black.png" alt="" />
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="./allproducts.html">All Products</a></li>
+            <li><a href="./about.html">About</a></li>
+            <li><a href="./contact.html">Contact</a></li>
+          </ul>
+          <i class="fa-solid fa-bars menu-icon"></i>
+
+          <div class="btns">
+            <span>
+              <a href="">Log Out</a>
+              <i class="fa-solid fa-arrow-right-from-bracket"></i>
+            </span>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <div class="cart-card">
+      <div class="cart-header">
+        <h3>My Cart</h3>
+        <i class="fa-regular fa-circle-xmark close-cart"></i>
+      </div>
+      <div class="cart-items"></div>
+      <div class="cart-footer">
+        <div class="cart-footer-text">
+          <h3>Cart Subtotal</h3>
+          <p class="cart-total">0$</p>
+        </div>
+
+        <button>Proceed To Checkout</button>
+      </div>
+    </div>
+    <div class="account-section page-section">
+      <div class="container">
+        <img
+          class="account-image"
+          src="../images/banner/banner-sm-2.jpg"
+          alt=""
+        />
+
+        <p class="account-name">Name : <span>Ahmed</span></p>
+        <p class="account-email">Email : <span>ahmed@gmail.com</span></p>
+        <p class="account-password">
+          Password : <span>0593852</span>
+          <i class="fa-solid fa-pen-to-square edit-password"></i
+          ><i class="fa-solid fa-eye show-password"></i>
+        </p>
+        <form class="hide-change-password">
+          <input
+            type="password"
+            class="change password"
+            placeholder="New Password"
+          />
+          <input type="submit" value="Save" />
+        </form>
+        <a class="control-panel-btn" href="./control-panel.html">Control Panel</a>
+      </div>
+    </div>
+
+    <div class="back-to-top">Back To Top</div>
+
+    <script type="module" src="../js/main.js"></script>
+  </body>
+</html>
