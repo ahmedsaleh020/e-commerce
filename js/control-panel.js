@@ -1,3 +1,4 @@
+import { toastCreator, removeToast } from "./common.js";
 const addBtn = document.querySelector("input[type='submit']");
 let products = JSON.parse(localStorage.getItem("products"));
 addBtn.addEventListener("click", function (e) {
@@ -18,8 +19,6 @@ addBtn.addEventListener("click", function (e) {
       });
       // update the products remote json file AKA server
       addProduct(products);
-      //
-      alert("product added");
     });
   }
 });
@@ -70,7 +69,15 @@ function addProduct(products) {
       return res.json();
     })
     .then((data) => {
-      console.log(data);
+      let toastStructure = `
+<div class="toast">
+ <i class="fa-solid fa-check toast-icon"></i>
+ <p>Product Added !</p>
+ <i class="fa-solid fa-xmark remove-toast"></i>
+</div>
+
+`;
+      toastCreator(toastStructure);
     })
     .catch((err) => {
       console.error(err);

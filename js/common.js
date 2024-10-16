@@ -127,7 +127,6 @@ export function addToCart() {
       //add to cart functionality
       if (e.target.classList.contains("addToCart")) {
         let cart = JSON.parse(localStorage.getItem("cart")) || [];
-        console.log(cart);
         let prodPrice = e.target.dataset.price;
         let prodTitle = e.target.dataset.title;
         let prodImg = e.target.dataset.image;
@@ -138,7 +137,16 @@ export function addToCart() {
         updateLocalStorg("cart", cart);
         // localStorage.setItem("cart", JSON.stringify(cart));
         // add toast
-        toastCreator();
+        let toastStructure = `
+<div class="toast">
+ <i class="fas fa-shopping-cart toast-icon"></i>
+ <p>Added To Cart !</p>
+ <button class="view-cart">View Cart</button>
+ <i class="fa-solid fa-xmark remove-toast"></i>
+</div>
+
+`;
+        toastCreator(toastStructure);
         // update dom
         renderProductsInCart();
       }
@@ -188,18 +196,10 @@ export async function getProducts() {
   }
 }
 // create toast
-export function toastCreator() {
+export function toastCreator(toastStructure) {
   const toastContainer = document.querySelector(".toasts-container");
   if (toastContainer) {
-    const toast = `
-         <div class="toast">
-          <i class="fas fa-shopping-cart toast-icon"></i>
-          <p>Added To Cart !</p>
-          <button class="view-cart">View Cart</button>
-          <i class="fa-solid fa-xmark remove-toast"></i>
-        </div>
-    
-    `;
+    const toast = toastStructure;
     toastContainer.insertAdjacentHTML("afterbegin", toast);
     // to let the toast slide in smooth
     setTimeout(() => {
