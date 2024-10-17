@@ -283,14 +283,7 @@ export function createToastStructure(
   `;
   return toastStructure;
 }
-export function formValidator(
-  login,
-  signup,
-  name,
-  email,
-  Password,
-  callback
-) {
+export function formValidator(login, signup, name, email, Password, callback) {
   let message = "";
 
   if (signup) {
@@ -358,4 +351,17 @@ export function updateUsers(usersArr) {
     .catch((err) => {
       return Promise.reject(err);
     });
+}
+export function loginandSignupBtnsHandler() {
+  const loginBtn = document.querySelector(".login-btn");
+  const signUpBtn = document.querySelector(".signup-btn");
+  // conditon here to not let function works in pages that does.t have login AND signup btns
+  if (loginBtn && signUpBtn) {
+    const account = JSON.parse(localStorage.getItem("my-account"));
+    if (!account) {
+      signUpBtn.style.display = "flex";
+    } else {
+      loginBtn.style.display = "flex";
+    }
+  }
 }

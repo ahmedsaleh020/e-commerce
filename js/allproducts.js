@@ -13,6 +13,7 @@ import {
   viewCart,
   createToastStructure,
   toastCreator,
+  loginandSignupBtnsHandler,
 } from "./common.js";
 //show and hide filter card
 function filterManager() {
@@ -56,6 +57,8 @@ removeFromCart();
 removeToast();
 // view cart through toast
 viewCart();
+// to hide login or sign up btn
+loginandSignupBtnsHandler()
 // filter functionality
 const filterBtn = document.querySelector(".filter-btn");
 filterBtn.addEventListener("click", function () {

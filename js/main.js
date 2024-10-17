@@ -15,6 +15,7 @@ import {
   removeToast,
   viewCart,
   createToastStructure,
+  loginandSignupBtnsHandler,
 } from "./common.js";
 // show and hide menu,cart card and the back to top btn functionality
 toTop();
@@ -47,3 +48,5 @@ removeFromCart();
 removeToast();
 // view cart through toast
 viewCart();
+// to hide login or signup btn 
+loginandSignupBtnsHandler()

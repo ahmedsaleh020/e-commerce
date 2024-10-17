@@ -24,7 +24,7 @@ let callback = (user) => {
           toastCreator(createToastStructure(message, "fa-solid fa-check"));
           setTimeout(() => {
             window.location.href = "../pages/myaccount.html";
-          });
+          }, 2000);
         } else {
           let message = `Wrong Password Or Email !`;
           toastCreator(createToastStructure(message));
