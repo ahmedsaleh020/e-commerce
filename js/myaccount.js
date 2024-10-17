@@ -1,5 +1,10 @@
-import { createToastStructure, toastCreator } from "./common.js";
+import {
+  createToastStructure,
+  toastCreator,
+  updateLocalStorg,
+} from "./common.js";
 const accountSection = document.querySelector(".account-section");
+const logOutBtn = document.querySelector(".log-out");
 let myAccount = JSON.parse(localStorage.getItem("my-account"));
 if (myAccount) {
   let { username, useremail, userpassword, role } = myAccount;
@@ -27,7 +32,7 @@ if (myAccount) {
         </form>
        ${addControlPanelBtn(role)}
       </div>`;
-      accountSection.insertAdjacentHTML("beforeend",html)
+  accountSection.insertAdjacentHTML("beforeend", html);
 } else {
   let message = "You Are Not Allowed To Be Here";
   toastCreator(createToastStructure(message));
@@ -45,3 +50,11 @@ function addControlPanelBtn(role) {
     return "";
   }
 }
+// log out
+logOutBtn.addEventListener("click", function (e) {
+  e.preventDefault();
+  // remove login data
+  myAccount = null;
+  updateLocalStorg("my-account", myAccount);
+  window.location.href = "../index.html";
+});
