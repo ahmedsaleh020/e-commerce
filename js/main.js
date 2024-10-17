@@ -14,6 +14,7 @@ import {
   toastCreator,
   removeToast,
   viewCart,
+  createToastStructure,
 } from "./common.js";
 // show and hide menu,cart card and the back to top btn functionality
 toTop();
@@ -26,12 +27,16 @@ const productsContainer = document.querySelector(".products-container");
 const loader = document.querySelector(".loader");
 // this condition to not do req for products in non product based pages like about and contact pages etc
 if (productsContainer) {
-  getProducts().then((products) => {
-    // remove loader
-    loader.classList.add("hide-loader");
-    // render 8 products in home page dom
-    renderProducts(productsContainer, products.slice(0, 8));
-  });
+  getProducts()
+    .then((products) => {
+      // remove loader
+      loader.classList.add("hide-loader");
+      // render 8 products in home page dom
+      renderProducts(productsContainer, products.slice(0, 8));
+    })
+    .catch((error) => {
+      toastCreator(createToastStructure("Check Connection And Try Again!"));
+    });
 }
 
 // add to cart

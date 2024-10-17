@@ -11,6 +11,8 @@ import {
   updateLocalStorg,
   removeToast,
   viewCart,
+  createToastStructure,
+  toastCreator,
 } from "./common.js";
 //show and hide filter card
 function filterManager() {
@@ -34,14 +36,18 @@ renderProductsInCart();
 // get products from api only when there is no products stored in local storage from the previous request so not every time make new request
 const productsContainer = document.querySelector(".products-container");
 const loader = document.querySelector(".loader");
-getProducts().then((products) => {
-  // remove loader
-  loader.classList.add("hide-loader");
-  // render products in dom
-  renderProducts(productsContainer, products);
-  // save the products to local storage to use them in filtering to not make extra requests
-  updateLocalStorg("products", products);
-});
+getProducts()
+  .then((products) => {
+    // remove loader
+    loader.classList.add("hide-loader");
+    // render products in dom
+    renderProducts(productsContainer, products);
+    // save the products to local storage to use them in filtering to not make extra requests
+    updateLocalStorg("products", products);
+  })
+  .catch((error) => {
+    toastCreator(createToastStructure("Check Connection And Try Again!"));
+  });
 // add to cart
 addToCart();
 // remove from cart

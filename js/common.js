@@ -192,7 +192,7 @@ export async function getProducts() {
     const data = await res.json();
     return data;
   } catch (error) {
-    console.error(error);
+    return Promise.reject(error);
   }
 }
 // create toast
@@ -268,4 +268,94 @@ export function toTop() {
   toTopBtn.addEventListener("click", function () {
     scrollTo(window, 0);
   });
+}
+export function createToastStructure(
+  message,
+  icon = "fa-solid fa-circle-exclamation"
+) {
+  let toastStructure = `
+  <div class="toast">
+   <i class="${icon} toast-icon"></i>
+   <p>${message}</p>
+   <i class="fa-solid fa-xmark remove-toast"></i>
+  </div>
+  
+  `;
+  return toastStructure;
+}
+export function formValidator(
+  login,
+  signup,
+  name,
+  email,
+  Password,
+  callback
+) {
+  let message = "";
+
+  if (signup) {
+    if (email == "" || name == "" || Password == "") {
+      message = "Complete All Fields!";
+      toastCreator(createToastStructure(message));
+    } else if (!email.includes("@")) {
+      message = "Email Must includes The @ Sign";
+      toastCreator(createToastStructure(message));
+    } else if (Password.length <= 8) {
+      message = "Password Length Must be More Than 8";
+      toastCreator(createToastStructure(message));
+    } else {
+      callback();
+      return;
+    }
+  } else if (login) {
+    if (email == "" || Password == "") {
+      message = "Complete All Fields!";
+      toastCreator(createToastStructure(message));
+    } else if (!email.includes("@")) {
+      message = "Email Must includes The @ Sign";
+      toastCreator(createToastStructure(message));
+    } else {
+      callback();
+      return;
+    }
+  } else {
+    throw new Error("Wrong Arguments");
+  }
+}
+
+// get users Array
+export let getUsers = async function () {
+  const api = "https://api.jsonbin.io/v3/b/6711051de41b4d34e4445bf0?meta=false";
+  try {
+    const res = await fetch(api, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        "X-Access-Key":
+          "$2a$10$QstHdfpftj1UKZ5ngyGQEuUNdSqdxGIiIV2QNH05enyCLBoDk9H/q",
+      },
+    });
+    const data = await res.json();
+    return data;
+  } catch (error) {
+    return error;
+  }
+};
+// update users array
+export function updateUsers(usersArr) {
+  return fetch("https://api.jsonbin.io/v3/b/6711051de41b4d34e4445bf0", {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+      "X-Access-Key":
+        "$2a$10$Nv7DRlqErVa4H50Kycw6p.V6XTwrfj9KFkpuEPE7v8QsDW3XbWoXO",
+    },
+    body: JSON.stringify(usersArr),
+  })
+    .then((res) => {
+      return res.json();
+    })
+    .catch((err) => {
+      return Promise.reject(err);
+    });
 }
