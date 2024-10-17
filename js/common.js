@@ -355,13 +355,15 @@ export function updateUsers(usersArr) {
 export function loginandSignupBtnsHandler() {
   const loginBtn = document.querySelector(".login-btn");
   const signUpBtn = document.querySelector(".signup-btn");
+  const myAccountBtn = document.querySelector(".account-btn");
   // conditon here to not let function works in pages that does.t have login AND signup btns
   if (loginBtn && signUpBtn) {
     const account = JSON.parse(localStorage.getItem("my-account"));
     if (!account) {
       signUpBtn.style.display = "flex";
-    } else {
       loginBtn.style.display = "flex";
+    } else {
+      myAccountBtn.style.display = "flex";
     }
   }
 }

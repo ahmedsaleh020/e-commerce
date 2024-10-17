@@ -1124,10 +1124,10 @@ footer .top-footer .big-col .hotline p span {
   cursor: pointer;
 }
 /* Control Panel Styles */
-.return-to-my-account{
+.return-to-my-account {
   text-align: center;
 }
-.return-to-my-account a{
+.return-to-my-account a {
   background-color: var(--main-color);
   color: var(--highlight-color);
   padding: 10px;
@@ -1261,10 +1261,10 @@ footer .top-footer .big-col .hotline p span {
 .account-password .show-password:hover {
   color: var(--name-item);
 }
-.account-section form{
-display: flex;
-justify-content: center;
-align-items: center;
+.account-section form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .account-section form input {
   padding: 10px;
@@ -1274,13 +1274,12 @@ align-items: center;
 }
 .account-section form input[type="submit"] {
   background-color: var(--main-color);
- cursor: pointer;
+  cursor: pointer;
 }
-.hide-change-password{
+.hide-change-password {
   visibility: hidden;
 }
-.control-panel-btn{
-  display: none;
+.control-panel-btn {
   background-color: var(--main-color);
   color: var(--highlight-color);
   font-size: 20px;

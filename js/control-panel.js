@@ -1,6 +1,19 @@
-import { toastCreator, removeToast } from "./common.js";
+import { toastCreator, removeToast, createToastStructure } from "./common.js";
 const addBtn = document.querySelector("input[type='submit']");
 let products = JSON.parse(localStorage.getItem("products"));
+const controlPanelSection = document.querySelector(".add-new-product");
+// prevent users from using control panel to be used by admin only
+controlPanelSection.style.display = "none";
+const myAccount = JSON.parse(localStorage.getItem("my-account"));
+if (!myAccount || myAccount.role == "user") {
+  let message = "You Aren't Authorized To Be Here !";
+  toastCreator(createToastStructure(message));
+  setTimeout(() => {
+    window.location.href = "../index.html";
+  }, 3000);
+} else {
+  controlPanelSection.style.display = "block";
+}
 addBtn.addEventListener("click", function (e) {
   e.preventDefault();
   const price = document.querySelector("#price");
