@@ -36,11 +36,8 @@ if (myAccount) {
       </div>`;
   accountSection.insertAdjacentHTML("beforeend", html);
 } else {
-  let message = "You Are Not Authorized To Be Here";
-  toastCreator(createToastStructure(message));
-  setTimeout(() => {
-    window.location.href = "../pages/signup.html";
-  }, 3000);
+  // redirect user to 404 page
+  window.location.href = "./404.html";
 }
 // render control panel btn only for admin
 function addControlPanelBtn(role) {

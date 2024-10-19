@@ -6,11 +6,8 @@ const controlPanelSection = document.querySelector(".add-new-product");
 controlPanelSection.style.display = "none";
 const myAccount = JSON.parse(localStorage.getItem("my-account"));
 if (!myAccount || myAccount.role == "user") {
-  let message = "You Aren't Authorized To Be Here !";
-  toastCreator(createToastStructure(message));
-  setTimeout(() => {
-    window.location.href = "../index.html";
-  }, 3000);
+  // redirect user to 404 page
+  window.location.href = "./404.html";
 } else {
   controlPanelSection.style.display = "block";
 }

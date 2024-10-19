@@ -315,9 +315,11 @@ export function scrollTo(element, position) {
 // back to top
 export function toTop() {
   const toTopBtn = document.querySelector(".back-to-top");
-  toTopBtn.addEventListener("click", function () {
-    scrollTo(window, 0);
-  });
+  if (toTopBtn) {
+    toTopBtn.addEventListener("click", function () {
+      scrollTo(window, 0);
+    });
+  }
 }
 export function createToastStructure(
   message,
