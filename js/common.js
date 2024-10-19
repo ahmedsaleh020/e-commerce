@@ -194,18 +194,30 @@ export function addToCart() {
 // remove from cart
 export function removeFromCart() {
   const cartItemsContainer = document.querySelector(".cart-items");
+  let cart = JSON.parse(localStorage.getItem("cart"));
+  const myAccount = JSON.parse(localStorage.getItem("my-account"));
   cartItemsContainer.addEventListener("click", function (e) {
     if (e.target.classList.contains("item-remove")) {
-      let cart = JSON.parse(localStorage.getItem("cart"));
+      if (myAccount) {
+        removeFromCartHelper(e, myAccount["usercart"], true);
+      } else {
+        removeFromCartHelper(e, cart);
+      }
+    }
+    function removeFromCartHelper(e, cartArr, account = false) {
       let itemId = e.target.dataset.id;
       // remove item from cart array
-      cart.splice(
-        cart.findIndex((item) => item.prodId == itemId),
+      cartArr.splice(
+        cartArr.findIndex((item) => item.prodId == itemId),
         1
       );
       // update local storage
-      updateLocalStorg("cart", cart);
-      // localStorage.setItem("cart", JSON.stringify(cart));
+
+      if (account) {
+        updateLocalStorg("my-account", myAccount);
+      } else {
+        updateLocalStorg("cart", cartArr);
+      }
       // update dom
       renderProductsInCart();
     }
