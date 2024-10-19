@@ -66,8 +66,9 @@ const createNewUser = (userName, userEmail, userPassword) => {
     username: `${userName}`,
     useremail: `${userEmail}`,
     userpassword: `${userPassword}`,
+    usercart: [],
+    userid: `${+new Date()}`,
     role: "user",
   };
   return user;
 };
-

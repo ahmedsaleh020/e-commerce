@@ -82,9 +82,8 @@ function changePassword() {
     .then((data) => {
       let users = data;
       let userIndex = users.findIndex((user) => {
-        return user["useremail"] == myAccount.useremail;
+        return user["userid"] == myAccount.userid;
       });
-      console.log(userIndex);
       const saveBtn = document.querySelector(".save-btn");
       saveBtn.addEventListener("click", function (e) {
         e.preventDefault();

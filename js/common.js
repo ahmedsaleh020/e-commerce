@@ -91,66 +91,104 @@ export function renderProductsInCart() {
   let total = 0;
   // get the array of cart products from the local storage
   let cart = JSON.parse(localStorage.getItem("cart")) || [];
-  // clean the cart card
-  cartCard.innerHTML = "";
-  cart.forEach((element) => {
-    const { prodTitle, prodImg, prodPrice, prodId } = element;
-    // calc the total
-    total += Number(prodPrice);
-    const productCard = `
-    <div class="cart-item">
-    <img
-      class="item-img"
-      src="${prodImg}"
-      alt="item-img"
-    />
-    <div class="item-detailes">
-      <h4 class="item-title">
-        ${prodTitle}
-      </h4>
-      <p class="item-price">${priceFormatter(prodPrice)}$</p>
-     </div>
-     <i class="fa-solid fa-trash-can item-remove" data-id=${prodId} data-title=${prodTitle}></i>
-     </div>`;
-    cartCard.insertAdjacentHTML("beforeend", productCard);
-  });
-  //update the cart total
-  cartCounter.textContent = cart.length;
-  // update the subtotal of the cart
-  cartTotal.textContent = `${priceFormatter(total)}$`;
+  // get the account if there is logged in acc
+  const myAccount = JSON.parse(localStorage.getItem("my-account"));
+  // empty array
+  let userCart;
+
+  // if there is account logged in
+  if (myAccount) {
+    // so render his cart products and if the cart has some items so  merge the products from the cart and his account cart
+    if (cart) {
+      userCart = [...myAccount["usercart"], ...cart];
+      // empty the cart so not every time add the same products in the usercart
+      cart = [];
+      updateLocalStorg("cart", cart);
+      myAccount.usercart = userCart;
+      updateLocalStorg("my-account", myAccount);
+    } else {
+      // if there is no products in the cart so render his account cart only
+      userCart = myAccount["usercart"];
+    }
+    renderProductsInCartHelper(userCart);
+  } else {
+    // if he has not account render the cart that any visitor has
+    renderProductsInCartHelper(cart);
+  }
+  // helper function that render the products in cart and accept array of products as [param]
+  function renderProductsInCartHelper(cartArr) {
+    // clean the cart card
+    cartCard.innerHTML = "";
+    cartArr.forEach((element) => {
+      const { prodTitle, prodImg, prodPrice, prodId } = element;
+      // calc the total
+      total += Number(prodPrice);
+      const productCard = `
+   <div class="cart-item">
+   <img
+     class="item-img"
+     src="${prodImg}"
+     alt="item-img"
+   />
+   <div class="item-detailes">
+     <h4 class="item-title">
+       ${prodTitle}
+     </h4>
+     <p class="item-price">${priceFormatter(prodPrice)}$</p>
+    </div>
+    <i class="fa-solid fa-trash-can item-remove" data-id=${prodId} data-title=${prodTitle}></i>
+    </div>`;
+      cartCard.insertAdjacentHTML("beforeend", productCard);
+    });
+    //update the cart total
+    cartCounter.textContent = cartArr.length;
+    // update the subtotal of the cart
+    cartTotal.textContent = `${priceFormatter(total)}$`;
+  }
 }
 // add to cart
 export function addToCart() {
   const productsContainer = document.querySelector(".products-container");
+  const myAccount = JSON.parse(localStorage.getItem("my-account"));
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
   if (productsContainer) {
     productsContainer.addEventListener("click", function (e) {
       //add to cart functionality
       if (e.target.classList.contains("addToCart")) {
-        let cart = JSON.parse(localStorage.getItem("cart")) || [];
-        let prodPrice = e.target.dataset.price;
-        let prodTitle = e.target.dataset.title;
-        let prodImg = e.target.dataset.image;
-        let prodId = e.target.dataset.id;
-        // update the cart array with the new product
-        cart.push({ prodImg, prodPrice, prodTitle, prodId });
-        // update local storage
-        updateLocalStorg("cart", cart);
-        // localStorage.setItem("cart", JSON.stringify(cart));
-        // add toast
-        let toastStructure = `
-<div class="toast">
- <i class="fas fa-shopping-cart toast-icon"></i>
- <p>Added To Cart !</p>
- <button class="view-cart">View Cart</button>
- <i class="fa-solid fa-xmark remove-toast"></i>
-</div>
-
-`;
-        toastCreator(toastStructure);
-        // update dom
-        renderProductsInCart();
+        if (myAccount) {
+          addToCartHelper(e, myAccount["usercart"], true);
+        } else {
+          addToCartHelper(e, cart);
+        }
       }
     });
+  }
+  function addToCartHelper(e, cartArr, account = false) {
+    let prodPrice = e.target.dataset.price;
+    let prodTitle = e.target.dataset.title;
+    let prodImg = e.target.dataset.image;
+    let prodId = e.target.dataset.id;
+    // update the cart array with the new product
+    cartArr.push({ prodImg, prodPrice, prodTitle, prodId });
+    // update local storage
+    if (account) {
+      updateLocalStorg(`my-account`, myAccount);
+    } else {
+      updateLocalStorg(`cart`, cartArr);
+    }
+    // add toast
+    let toastStructure = `
+      <div class="toast">
+       <i class="fas fa-shopping-cart toast-icon"></i>
+       <p>Added To Cart !</p>
+       <button class="view-cart">View Cart</button>
+       <i class="fa-solid fa-xmark remove-toast"></i>
+      </div>
+      
+      `;
+    toastCreator(toastStructure);
+    // update dom
+    renderProductsInCart();
   }
 }
 // remove from cart
