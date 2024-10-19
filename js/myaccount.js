@@ -36,7 +36,7 @@ if (myAccount) {
       </div>`;
   accountSection.insertAdjacentHTML("beforeend", html);
 } else {
-  let message = "You Are Not Allowed To Be Here";
+  let message = "You Are Not Authorized To Be Here";
   toastCreator(createToastStructure(message));
   setTimeout(() => {
     window.location.href = "../pages/signup.html";
@@ -55,8 +55,28 @@ function addControlPanelBtn(role) {
 // log out
 logOutBtn.addEventListener("click", function (e) {
   e.preventDefault();
-  // remove login data
-  removeLoginData();
+  // update his account cart on the json bin aka server so when logged in from other browser can reach his updated cart
+  getUsers()
+    .then((data) => {
+      let users = data;
+      let userIndex = users.findIndex(
+        (user) => user["userid"] == myAccount["userid"]
+      );
+      users[userIndex]["usercart"] = myAccount["usercart"];
+      updateUsers(users)
+        .then((data) => {
+          // remove login data
+          removeLoginData();
+        })
+        .catch((error) => {
+          message = "No Connection ! Try Log Out Later";
+          toastCreator(createToastStructure(message));
+        });
+    })
+    .catch((error) => {
+      message = "No Connection ! Try Log Out Later";
+      toastCreator(createToastStructure(message));
+    });
 });
 function removeLoginData(href = "../index.html") {
   myAccount = null;
