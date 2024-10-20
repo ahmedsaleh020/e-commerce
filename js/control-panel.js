@@ -27,10 +27,12 @@ addBtn.addEventListener("click", function (e) {
     description.value == "" ||
     file.value == ""
   ) {
-    alert("Fill All Product Destails Please");
+    let message = "Fill All Product Destails Please";
+    toastCreator(createToastStructure(message));
   } else {
     if (rate.value <= 0 || rate.value > 5) {
-      alert("rate should be between 1-5 ");
+      let message = "rate should be between 1-5 ";
+      toastCreator(createToastStructure(message));
     } else {
       uploadImage(file.files[0]).then((url) => {
         // add new product to products array
@@ -116,7 +118,8 @@ function addProduct(products) {
     })
     .catch((err) => {
       console.error(err);
-      alert("Try Again !");
+      let message = "Try Again !";
+      toastCreator(createToastStructure(message));
     });
 }
 function getProducts() {

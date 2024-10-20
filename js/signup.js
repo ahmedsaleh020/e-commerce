@@ -30,25 +30,13 @@ submit.addEventListener("click", function (e) {
             }, 2500);
           })
           .catch((error) => {
-            let toastStructure = ` 
-            <div class="toast">
-             <i class="fa-solid fa-circle-exclamation toast-icon"></i>
-             <p>Failed .. Try Again !</p>
-             <i class="fa-solid fa-xmark remove-toast"></i>
-            </div>
-            `;
-            toastCreator(toastStructure);
+            toastCreator(createToastStructure("Failed .. Try Again !"));
           });
       })
       .catch((error) => {
-        let toastStructure = ` 
-        <div class="toast">
-         <i class="fa-solid fa-circle-exclamation toast-icon"></i>
-         <p>No Internet Available .. Try Again Later</p>
-         <i class="fa-solid fa-xmark remove-toast"></i>
-        </div>
-        `;
-        toastCreator(toastStructure);
+        toastCreator(
+          createToastStructure("No Internet Available .. Try Again Later")
+        );
       });
   };
   formValidator(

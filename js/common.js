@@ -177,16 +177,9 @@ export function addToCart() {
       updateLocalStorg(`cart`, cartArr);
     }
     // add toast
-    let toastStructure = `
-      <div class="toast">
-       <i class="fas fa-shopping-cart toast-icon"></i>
-       <p>Added To Cart !</p>
-       <button class="view-cart">View Cart</button>
-       <i class="fa-solid fa-xmark remove-toast"></i>
-      </div>
-      
-      `;
-    toastCreator(toastStructure);
+    toastCreator(
+      createToastStructure("Added To Cart !", "fas fa-shopping-cart")
+    );
     // update dom
     renderProductsInCart();
   }
