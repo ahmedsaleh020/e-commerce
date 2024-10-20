@@ -328,17 +328,28 @@ export function createToastStructure(
   `;
   return toastStructure;
 }
-export function formValidator(login, signup, name, email, Password, callback) {
+export function formValidator(
+  login,
+  signup,
+  name,
+  email,
+  Password,
+  callback,
+  loader
+) {
   let message = "";
 
   if (signup) {
     if (email == "" || name == "" || Password == "") {
+      loader.classList.add("hide-loader");
       message = "Complete All Fields!";
       toastCreator(createToastStructure(message));
     } else if (!email.includes("@")) {
+      loader.classList.add("hide-loader");
       message = "Email Must includes The @ Sign";
       toastCreator(createToastStructure(message));
     } else if (Password.length <= 8) {
+      loader.classList.add("hide-loader");
       message = "Password Length Must be More Than 8";
       toastCreator(createToastStructure(message));
     } else {
@@ -347,9 +358,11 @@ export function formValidator(login, signup, name, email, Password, callback) {
     }
   } else if (login) {
     if (email == "" || Password == "") {
+      loader.classList.add("hide-loader");
       message = "Complete All Fields!";
       toastCreator(createToastStructure(message));
     } else if (!email.includes("@")) {
+      loader.classList.add("hide-loader");
       message = "Email Must includes The @ Sign";
       toastCreator(createToastStructure(message));
     } else {

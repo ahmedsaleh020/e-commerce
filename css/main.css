@@ -777,6 +777,7 @@ nav .container .btns span:hover i {
 /* loader styles */
 .loader {
   width: 50px;
+  scale: 0.5;
   aspect-ratio: 1;
   border-radius: 50%;
   background: radial-gradient(farthest-side, var(--main-color) 94%, #0000)
@@ -792,6 +793,11 @@ nav .container .btns span:hover i {
 }
 .hide-loader {
   display: none;
+}
+/* pages loader */
+.page-section .loader{
+align-self: center;
+
 }
 /* Newsletter styles */
 .newsletter {

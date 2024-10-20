@@ -2,6 +2,7 @@ import { toastCreator, removeToast, createToastStructure } from "./common.js";
 const addBtn = document.querySelector("input[type='submit']");
 let products = JSON.parse(localStorage.getItem("products"));
 const controlPanelSection = document.querySelector(".add-new-product");
+const loader = document.querySelector(".add-new-product .loader");
 // prevent users from using control panel to be used by admin only
 controlPanelSection.style.display = "none";
 const myAccount = JSON.parse(localStorage.getItem("my-account"));
@@ -12,6 +13,7 @@ if (!myAccount || myAccount.role == "user") {
   controlPanelSection.style.display = "block";
 }
 addBtn.addEventListener("click", function (e) {
+  loader.classList.remove("hide-loader");
   e.preventDefault();
   const price = document.querySelector("#price");
   const rate = document.querySelector("#rate");
@@ -27,10 +29,12 @@ addBtn.addEventListener("click", function (e) {
     description.value == "" ||
     file.value == ""
   ) {
+    loader.classList.add("hide-loader");
     let message = "Fill All Product Destails Please";
     toastCreator(createToastStructure(message));
   } else {
     if (rate.value <= 0 || rate.value > 5) {
+      loader.classList.add("hide-loader");
       let message = "rate should be between 1-5 ";
       toastCreator(createToastStructure(message));
     } else {
@@ -106,18 +110,14 @@ function addProduct(products) {
       return res.json();
     })
     .then((data) => {
-      let toastStructure = `
-<div class="toast">
- <i class="fa-solid fa-check toast-icon"></i>
- <p>Product Added !</p>
- <i class="fa-solid fa-xmark remove-toast"></i>
-</div>
-
-`;
-      toastCreator(toastStructure);
+      loader.classList.add("hide-loader");
+      let message = "Product Added !";
+      let icon = "fa-solid fa-check";
+      toastCreator(createToastStructure(message, icon));
     })
     .catch((err) => {
       console.error(err);
+      loader.classList.add("hide-loader");
       let message = "Try Again !";
       toastCreator(createToastStructure(message));
     });

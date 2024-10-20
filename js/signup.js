@@ -9,11 +9,12 @@ const submit = document.querySelector("input[value='Sign up']");
 const userName = document.querySelector("#name");
 const userEmail = document.querySelector("#email");
 const userPassword = document.querySelector("#password");
+const loader = document.querySelector(".loader");
 let users = [];
 
 submit.addEventListener("click", function (e) {
   e.preventDefault();
-
+  loader.classList.remove("hide-loader");
   let callback = () => {
     getUsers()
       .then((usersArr) => {
@@ -23,6 +24,7 @@ submit.addEventListener("click", function (e) {
         );
         updateUsers(users)
           .then((data) => {
+            loader.classList.add("hide-loader");
             let message = "Account Created. Enjoy Shopping";
             toastCreator(createToastStructure(message, "fa-solid fa-check"));
             setTimeout(() => {
@@ -30,10 +32,12 @@ submit.addEventListener("click", function (e) {
             }, 2500);
           })
           .catch((error) => {
+            loader.classList.add("hide-loader");
             toastCreator(createToastStructure("Failed .. Try Again !"));
           });
       })
       .catch((error) => {
+        loader.classList.add("hide-loader");
         toastCreator(
           createToastStructure("No Internet Available .. Try Again Later")
         );
@@ -45,7 +49,8 @@ submit.addEventListener("click", function (e) {
     userName.value,
     userEmail.value,
     userPassword.value,
-    callback
+    callback,
+    loader
   );
 });
 
