@@ -178,7 +178,7 @@ export function addToCart() {
     }
     // add toast
     toastCreator(
-      createToastStructure("Added To Cart !", "fas fa-shopping-cart")
+      createToastStructure("Added To Cart!", "fas fa-shopping-cart", true)
     );
     // update dom
     renderProductsInCart();
@@ -316,12 +316,14 @@ export function toTop() {
 }
 export function createToastStructure(
   message,
-  icon = "fa-solid fa-circle-exclamation"
+  icon = "fa-solid fa-circle-exclamation",
+  button = false
 ) {
   let toastStructure = `
   <div class="toast">
    <i class="${icon} toast-icon"></i>
    <p>${message}</p>
+   ${button ? "<button class='view-cart'>View Cart</button>" : ""}
    <i class="fa-solid fa-xmark remove-toast"></i>
   </div>
   
