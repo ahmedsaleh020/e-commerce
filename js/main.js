@@ -16,6 +16,8 @@ import {
   viewCart,
   createToastStructure,
   loginandSignupBtnsHandler,
+  getUsers,
+  updateUsers,
 } from "./common.js";
 // show and hide menu,cart card and the back to top btn functionality
 toTop();
@@ -48,5 +50,56 @@ removeFromCart();
 removeToast();
 // view cart through toast
 viewCart();
-// to hide login or signup btn 
-loginandSignupBtnsHandler()
+// to hide login or signup btn
+loginandSignupBtnsHandler();
+// contact page
+const conactSection = document.querySelector(".contact-section");
+
+function contact() {
+  if (!conactSection) return;
+  else {
+    const loader = document.querySelector(".loader");
+    const myAccount = JSON.parse(localStorage.getItem("my-account"));
+    const nameField = document.querySelector("#name-field");
+    const emailField = document.querySelector("#email-field");
+    const messageField = document.querySelector("#message-field");
+    const submitBtn = document.querySelector(".send-btn");
+    if (myAccount) {
+      nameField.value = myAccount["username"];
+      emailField.value = myAccount["useremail"];
+    }
+    getUsers()
+      .then((data) => {
+        let users = data;
+        let admin = users.find((user) => user["role"] == "admin");
+        submitBtn.addEventListener("click", function (e) {
+          e.preventDefault();
+          loader.classList.remove("hide-loader");
+          let message = {
+            senderEmail: emailField.value,
+            senderName: nameField.value,
+            messageContent: messageField.value,
+          };
+          admin["messages"].push(message);
+          updateUsers(users)
+            .then((data) => {
+              loader.classList.add("hide-loader");
+              let message = "Sent Successfully !";
+              let icon = "fas fa-check";
+              toastCreator(createToastStructure(message, icon));
+            })
+            .catch((error) => {
+              loader.classList.add("hide-loader");
+              let message = "Failed!";
+              toastCreator(createToastStructure(message));
+            });
+        });
+      })
+      .catch((error) => {
+        loader.classList.add("hide-loader");
+        let message = "No Connection !";
+        toastCreator(createToastStructure(message));
+      });
+  }
+}
+contact();

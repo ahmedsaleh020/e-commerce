@@ -183,7 +183,7 @@ header {
   outline: none;
 }
 .search .search-btn {
-  width: 170px;
+  /* width: 170px; */
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
   background-color: var(--main-color);
