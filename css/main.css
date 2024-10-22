@@ -1267,6 +1267,38 @@ footer .top-footer .big-col .hotline p span {
 .account-password .show-password:hover {
   color: var(--name-item);
 }
+.message-container{
+  position: relative;
+  background-color: var(--dark-color);
+  width: 50px ;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.message-icon {
+  color: var(--main-color);
+  font-size: 30px;
+  transition: all 0.3s;
+}
+.message-icon:hover {
+  color: var(--name-item);
+}
+
+.message-counter{
+  position: absolute;
+  top: -5px;
+  right: -17px;
+  background-color: var(--dark-color);
+  border-radius: 50%;
+  width: 25px;
+  height: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--main-color);
+}
 .account-section form {
   display: flex;
   justify-content: center;

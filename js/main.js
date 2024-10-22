@@ -87,6 +87,7 @@ function contact() {
               let message = "Sent Successfully !";
               let icon = "fas fa-check";
               toastCreator(createToastStructure(message, icon));
+              messageField.value = "";
             })
             .catch((error) => {
               loader.classList.add("hide-loader");

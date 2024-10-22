@@ -7,7 +7,7 @@ import {
 } from "./common.js";
 const accountSection = document.querySelector(".account-section");
 const logOutBtn = document.querySelector(".log-out");
-const logOutLoader = document.querySelector(".btns .loader")
+const logOutLoader = document.querySelector(".btns .loader");
 let myAccount = JSON.parse(localStorage.getItem("my-account"));
 if (myAccount) {
   let { username, useremail, userpassword, role } = myAccount;
@@ -34,7 +34,9 @@ if (myAccount) {
           <input class="save-btn" type="submit" value="Save" />
           <div class="loader hide-loader"></div>
         </form>
-       ${addControlPanelBtn(role)}
+        ${addAdminOnlySections(role, false, true)}
+
+       ${addAdminOnlySections(role, true, false)}
       </div>`;
   accountSection.insertAdjacentHTML("beforeend", html);
 } else {
@@ -42,18 +44,27 @@ if (myAccount) {
   window.location.href = "./404.html";
 }
 // render control panel btn only for admin
-function addControlPanelBtn(role) {
+function addAdminOnlySections(role, btn, messages) {
   if (role == "admin") {
-    return `<a class="control-panel-btn" href="./control-panel.html">
+    if (btn) {
+      return `<a class="control-panel-btn" href="./control-panel.html">
         Control Panel
       </a>`;
+    } else if (messages) {
+      return ` <span class="message-container">
+        <a href="./messages.html">
+          <i class="fa-solid fa-message message-icon message-icon"></i>
+          <span class="message-counter">${myAccount["messages"].length}</span>
+        </a>
+      </span>`;
+    }
   } else {
     return "";
   }
 }
 // log out
 logOutBtn.addEventListener("click", function (e) {
-  logOutLoader.classList.remove("hide-loader")
+  logOutLoader.classList.remove("hide-loader");
   e.preventDefault();
   // update his account cart on the json bin aka server so when logged in from other browser can reach his updated cart
   getUsers()
@@ -66,17 +77,17 @@ logOutBtn.addEventListener("click", function (e) {
       updateUsers(users)
         .then((data) => {
           // remove login data
-          logOutLoader.classList.add("hide-loader")
+          logOutLoader.classList.add("hide-loader");
           removeLoginData();
         })
         .catch((error) => {
-          logOutLoader.classList.add("hide-loader")
+          logOutLoader.classList.add("hide-loader");
           message = "No Connection ! Try Log Out Later";
           toastCreator(createToastStructure(message));
         });
     })
     .catch((error) => {
-      logOutLoader.classList.add("hide-loader")
+      logOutLoader.classList.add("hide-loader");
       message = "No Connection ! Try Log Out Later";
       toastCreator(createToastStructure(message));
     });
@@ -94,7 +105,9 @@ function mask(str) {
 const chagePasswordForm = document.querySelector(".account-section form");
 const newPassword = document.querySelector(".change-password-input");
 // change password
-const changePasswordLoader = document.querySelector(".hide-change-password .loader")
+const changePasswordLoader = document.querySelector(
+  ".hide-change-password .loader"
+);
 const editPasswordBtn = document.querySelector(".edit-password");
 editPasswordBtn.addEventListener("click", function () {
   changePassword();
@@ -109,27 +122,27 @@ function changePassword() {
       });
       const saveBtn = document.querySelector(".save-btn");
       saveBtn.addEventListener("click", function (e) {
-        changePasswordLoader.classList.remove("hide-loader")
+        changePasswordLoader.classList.remove("hide-loader");
         e.preventDefault();
         if (newPassword.value == "") {
-          changePasswordLoader.classList.add("hide-loader")
+          changePasswordLoader.classList.add("hide-loader");
           let message = "Can't Save Empty Password !";
           toastCreator(createToastStructure(message));
         } else if (newPassword.value.length <= 8) {
-          changePasswordLoader.classList.add("hide-loader")
+          changePasswordLoader.classList.add("hide-loader");
           let message = "Password must be more than 8 characters";
           toastCreator(createToastStructure(message));
         } else {
           users[userIndex].userpassword = newPassword.value;
           updateUsers(users)
             .then((data) => {
-              changePasswordLoader.classList.add("hide-loader")
+              changePasswordLoader.classList.add("hide-loader");
               let message = "password saved successfully";
               toastCreator(createToastStructure(message));
               removeLoginData("../pages/login.html");
             })
             .catch((error) => {
-              changePasswordLoader.classList.add("hide-loader")
+              changePasswordLoader.classList.add("hide-loader");
               let message = "Not Saved, Try Again!";
               toastCreator(createToastStructure(message));
             });
@@ -137,7 +150,7 @@ function changePassword() {
       });
     })
     .catch((error) => {
-      changePasswordLoader.classList.add("hide-loader")
+      changePasswordLoader.classList.add("hide-loader");
       let message = "No Connection !";
       toastCreator(createToastStructure(message));
     });
