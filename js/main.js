@@ -104,3 +104,41 @@ function contact() {
   }
 }
 contact();
+// messages page
+const myAccount = JSON.parse(localStorage.getItem("my-account"));
+const messagesContainer = document.querySelector(".messages-container");
+
+function messagesCreator() {
+  // clean the container
+  messagesContainer.innerHTML = "";
+  myAccount["messages"].forEach(
+    ({ messageContent, senderEmail, senderName }) => {
+      const messageStructure = `<div class="message">
+              <span class="sender-name-field"
+                >Sender Name: <span class="sender-name">${senderName}</span></span
+              >
+              <span class="sender-email-field"
+                >Sender Email: <span class="sender-email">${senderEmail}</span>
+              </span>
+              <p class="message-content-field">
+                Message :<br />
+                <span class="message-content"
+                  >${messageContent}</span
+                >
+              </p>
+            </div>`;
+      messagesContainer.insertAdjacentHTML("beforeend", messageStructure);
+    }
+  );
+}
+function messagesManager() {
+  const messagesSection = document.querySelector(".messages-section");
+  if (messagesSection) {
+    if (myAccount && myAccount["role"] == "admin") {
+      messagesCreator();
+    } else {
+      window.location.href = "../pages/404.html";
+    }
+  }
+}
+messagesManager();
