@@ -111,31 +111,79 @@ const messagesContainer = document.querySelector(".messages-container");
 function messagesCreator() {
   // clean the container
   messagesContainer.innerHTML = "";
-  myAccount["messages"].forEach(
-    ({ messageContent, senderEmail, senderName }) => {
-      const messageStructure = `<div class="message">
-              <span class="sender-name-field"
-                >Sender Name: <span class="sender-name">${senderName}</span></span
-              >
-              <span class="sender-email-field"
-                >Sender Email: <span class="sender-email">${senderEmail}</span>
-              </span>
-              <p class="message-content-field">
-                Message :<br />
-                <span class="message-content"
-                  >${messageContent}</span
+  if (myAccount["messages"].length == 0) {
+    const messageStructure = `
+    <div class="message" data-available="false">
+   <P style="text-align:center;">No Messages ...</P> 
+  </div>`;
+    messagesContainer.insertAdjacentHTML("beforeend", messageStructure);
+  } else {
+    myAccount["messages"].forEach(
+      ({ messageContent, senderEmail, senderName }) => {
+        const messageStructure = `<div class="message" data-available="true" data-name="${senderName}" data-email="${senderEmail}" data-message="${messageContent}">
+                <span class="sender-name-field"
+                  >Sender Name: <span class="sender-name">${senderName}</span></span
                 >
-              </p>
-            </div>`;
-      messagesContainer.insertAdjacentHTML("beforeend", messageStructure);
+                <span class="sender-email-field"
+                  >Sender Email: <span class="sender-email">${senderEmail}</span>
+                </span>
+                <p class="message-content-field">
+                  Message :<br />
+                  <span class="message-content"
+                    >${messageContent}</span
+                  >
+                </p>
+              </div>`;
+        messagesContainer.insertAdjacentHTML("beforeend", messageStructure);
+      }
+    );
+  }
+}
+function showMessageInPreview(element) {
+  let messagePreviewerContainer = document.querySelector(".message-previewer");
+  messagePreviewerContainer.innerHTML = "";
+  let html = `
+  <div class="sender-data">
+      <img src="../images/default-account-img.jpg" alt="" />
+      <p class="sender-name-prev">${element.dataset.name}</p>
+      <p class="sender-email-prev">${element.dataset.email}</p>
+    </div>
+
+    <div class="message-content-prev">
+      <p class="msg receiver-sign">
+      ${element.dataset.message.replaceAll("\n", "<br>")}
+      </p>
+    </div>
+
+    <form>
+      <input type="text" placeholder="Write an reply here ..." />
+      <input type="submit" value="Reply" />
+    </form>
+`;
+  messagePreviewerContainer.insertAdjacentHTML("beforeend", html);
+}
+function selectMessage() {
+  messagesContainer.addEventListener("click", function (e) {
+    if (e.target.closest(".message")) {
+      if (e.target.closest(".message").dataset.available == "true") {
+        messagesContainer
+          .querySelectorAll(".message")
+          .forEach((message) => message.classList.remove("active-message"));
+
+        e.target.closest(".message").classList.add("active-message");
+        showMessageInPreview(e.target.closest(".message"));
+      }
+    } else {
+      return;
     }
-  );
+  });
 }
 function messagesManager() {
   const messagesSection = document.querySelector(".messages-section");
   if (messagesSection) {
     if (myAccount && myAccount["role"] == "admin") {
       messagesCreator();
+      selectMessage();
     } else {
       window.location.href = "../pages/404.html";
     }

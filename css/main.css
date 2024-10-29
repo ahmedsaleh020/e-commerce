@@ -1398,7 +1398,8 @@ footer .top-footer .big-col .hotline p span {
   background-color: #ffc928c4;
 }
  .messages .message.active-message{
-  background-color: var(--main-color);
+  background-color: #ffc9288a;
+  color: var(--highlight-color);
 }
 .sender-email,
 .sender-name,
